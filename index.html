@@ -11,11 +11,13 @@
       }
     </style>
     <script>
-      const canvas = document.querySelector("#canvasGame");
-      canvas.style.width = "100%";
-      canvas.style.height = "100%";
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      window.addEventListener("load", (event) => {
+        const canvas = document.querySelector("#canvasGame");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      });
     </script>
   </head>
   <body>

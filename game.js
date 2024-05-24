@@ -1,5 +1,5 @@
 const game = {
-  canvas: document.createElement("canvas");
+  canvas: document.createElement("canvas"),
   setupCanvas() {
     document.getElementById("canvasContainer").appendChild(canvas);
     canvas.id = "gameCanvas";

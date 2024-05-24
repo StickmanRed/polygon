@@ -8,18 +8,38 @@ const game = {
     this.canvas.width  = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
     this.ctx = this.canvas.getContext("2d");
+  },
+
+  sprites: [],
+  renderSprites() {
+    this.sprites.forEach((sprite) => {
+      if (sprite.shown) {
+        this.ctx.beginPath();
+        sprite.shapes[sprite.costume](ctx, () => {
+          this.ctx.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
+          this.ctx.rotate(sprite.rotation * Math.PI / 180);
+        });
+        
+      }
+    });
+  }
+}
+class Sprite {
+  constructor(x=0, y=0, scale=1, rotation=0, shown=true) {
+    this.x = x;
+    this.y = y;
+    this.scale = scale;
+    this.rotation = rotation;
+    this.shown = shown;
+    this.shapes = [(ctx, transform) => {
+      ctx.rect(0,0,40,40);
+      transform();
+      ctx.fill();
+    }];
+    this.costume = 0;
   }
 }
 
-/*const canvas = document.createElement("canvas");
-document.getElementById("canvasContainer").appendChild(canvas);
-canvas.id = "gameCanvas"
-canvas.style.width = "100%";
-canvas.style.height = "100%";
-canvas.width  = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
-
-const ctx = canvas.getContext("2d");*/
 game.setupCanvas();
 ctx = game.ctx;
 ctx.fillStyle = "red";

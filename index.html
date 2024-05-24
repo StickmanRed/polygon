@@ -15,11 +15,20 @@
         float: left;
       }
     </style>
-    <script src="game.js" defer="true"></script>
+    <script>
+      window.addEventListener("load", (event) => {
+        const canvas = document.getElementById("canvasGame");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }, false);
+    </script>
   </head>
   <body>
     <div id="canvasContainer">
       <canvas id="canvasGame"></canvas>
     </div>
+    <script src="game.js" defer="true"></script>
   </body>
 </html>

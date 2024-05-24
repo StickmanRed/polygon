@@ -5,6 +5,7 @@ const game = {
     this.canvas.id = "gameCanvas";
     this.canvas.style.width = "100%";
     this.canvas.style.height = "100%";
+    this.canvas.style.float = "left";
     this.canvas.width  = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
     this.ctx = this.canvas.getContext("2d");

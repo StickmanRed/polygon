@@ -22,6 +22,9 @@ const game = {
         
       }
     });
+  },
+  addSprite(sprite) {
+    sprites.push(sprite);
   }
 }
 class Sprite {
@@ -42,5 +45,7 @@ class Sprite {
 
 game.setupCanvas();
 ctx = game.ctx;
-ctx.fillStyle = "red";
-ctx.fillRect(0, 0, 150, 75);
+/*ctx.fillStyle = "red";
+ctx.fillRect(0, 0, 150, 75);*/
+game.addSprite(new Sprite());
+game.renderSprites();

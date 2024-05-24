@@ -24,7 +24,7 @@ const game = {
     });
   },
   addSprite(sprite) {
-    sprites.push(sprite);
+    this.sprites.push(sprite);
   }
 }
 class Sprite {

@@ -11,7 +11,7 @@ const game = {
     this.ctx = this.canvas.getContext("2d");
   },
   clearCanvas() {
-    this.ctx.setTransform(0, 0, 0, 0, 0, 0);
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
 
@@ -80,10 +80,10 @@ const box = new Sprite();
 game.addSprite(box);
 i = 10;
 setTimeout(function move() {
-  game.clearCanvas();
-  // box.point(i);
-  box.changesize(0.2);
+  box.point(i);
+  box.changesize(0.1);
   box.goto(i*2, i*2);
+  game.clearCanvas();
   game.renderSprites();
   if (i < 1000) {
     i += 10;

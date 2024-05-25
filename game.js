@@ -2,7 +2,7 @@
 function transformMatrix(dx, dy, scale, rotate) {
   const xAX = Math.cos(rotate) * scale;
   const xAY = Math.sin(rotate) * scale;
-  return (xAX, xAY, -xAY, xAX, dx, dy);
+  return [xAX, xAY, -xAY, xAX, dx, dy];
 }
 
 const game = {

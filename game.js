@@ -40,7 +40,7 @@ class Sprite {
     this.x = x;
     this.y = y;
     this.scale = scale;
-    this.rotation = rotation;
+    this.rotation = (rotation + 180) % 360 - 180; // degrees are measured as in Scratch; up is 0, right is 90, down is -180
     this.shown = shown;
     this.ctx = null;
 
@@ -55,6 +55,16 @@ class Sprite {
     this.x = x;
     this.y = y;
   }
+  changeby(dx=0, dy=0) {
+    this.x += dx;
+    this.y += dy;
+  }
+  point(deg=0) {
+    this.rotation = (deg + 180) % 360 - 180;
+  }
+  rotate(deg=0) {
+    this.point(this.rotation + deg);
+  }
 }
 
 game.setupCanvas();
@@ -62,11 +72,11 @@ ctx = game.ctx;
 game.addSprite(new Sprite());
 i = 10;
 setTimeout(function move() {
-  game.sprites[0].goto(i, i);
+  game.sprites[0].point(i);
   game.clearCanvas();
   game.renderSprites();
-  if (i < 100) {
+  if (i < 1000) {
     i += 10;
     setTimeout(move, 500);
   }
-}, 500);
+}, 100);

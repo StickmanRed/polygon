@@ -26,8 +26,6 @@ const game = {
           if (shape[2]) {this.ctx.stroke(newPath);}
         });
       }
-        
-      }
     });
   },
   addSprite(sprite) {

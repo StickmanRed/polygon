@@ -76,13 +76,14 @@ class Sprite {
 
 game.setupCanvas();
 ctx = game.ctx;
-game.addSprite(new Sprite());
+const box = new Sprite();
+game.addSprite(box);
 i = 10;
 setTimeout(function move() {
-  game.sprites[0].point(i);
-  game.sprites[0].changesize(0.2);
-  game.sprites[0].goto(i*2, i*2);
   game.clearCanvas();
+  box.point(i);
+  box.changesize(0.2);
+  box.goto(i*2, i*2);
   game.renderSprites();
   if (i < 1000) {
     i += 10;

@@ -82,11 +82,11 @@ i = 10;
 setTimeout(function move() {
   box.point(i);
   box.changesize(0.1);
-  box.goto(i*2, i*2);
+  box.goto(i, i);
   game.clearCanvas();
   game.renderSprites();
   if (i < 1000) {
-    i += 10;
-    setTimeout(move, 100);
+    i += 100;
+    setTimeout(move, 10);
   }
 }, 100);

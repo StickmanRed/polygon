@@ -81,8 +81,8 @@ game.addSprite(box);
 i = 10;
 setTimeout(function move() {
   box.point(i);
-  box.changesize(0.1);
-  box.goto(i, i);
+  box.changesize(0.005);
+  box.goto(i*1.1, i);
   game.clearCanvas();
   game.renderSprites();
   if (i < 1000) {

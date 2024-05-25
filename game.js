@@ -12,7 +12,7 @@ const game = {
   },
   clearCanvas() {
     this.canvas.clearRect(0, 0, canvas.width, canvas.height);
-  }
+  },
 
   sprites: [],
   renderSprites() {

@@ -1,3 +1,10 @@
+// Huge thanks to whoever wrote this! https://stackoverflow.com/a/60248778
+function transformMatrix(dx, dy, scale, rotate) {
+  const xAX = Math.cos(rotate) * scale;
+  const xAY = Math.sin(rotate) * scale;
+  return (xAX, xAY, -xAY, xAX, dx, dy);
+}
+
 const game = {
   canvas: document.createElement("canvas"),
   setupCanvas() {
@@ -19,14 +26,15 @@ const game = {
   renderSprites() {
     this.sprites.forEach((sprite) => {
       if (sprite.shown) {
+        // const matrix = sprite.getTransform();
         sprite.shapes.forEach((shape) => {
           const newPath = new Path2D(shape[0]);
           this.ctx.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
-          const rotation = sprite.rotation * Math.PI / 180;
-          this.ctx.rotate(rotation);
+          this.ctx.rotate(sprite.rotation * Math.PI / 180);
+          // this.ctx.setTransform(...matrix);
           if (shape[1]) {this.ctx.fill(newPath);}
           if (shape[2]) {this.ctx.stroke(newPath);}
-          this.ctx.rotate(-1 * rotation);
+          this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         });
       }
     });
@@ -50,6 +58,23 @@ class Sprite {
     
     this.shapes = [[defaultShape, true, false]];
     this.costume = 0;
+  }
+
+  getTransform() {
+    return transformMatrix(this.x, this.y, this.scale, this.rotation * Math.PI / 180);
+  }
+
+  pointInSprite(x=0, y=0) {
+    // For this, probably just rotate the point and check if the transformed point is in the transformed path
+    const matrix = getTransform();
+    let newX = matrix[0] * x + matrix[2] * y + matrix[4];
+    let newY = matrix[1] * x + matrix[3] * y + matrix[5];
+    for (const shape of this.shapes) {
+      if ((this.ctx.isPointInPath(shape[0], newX, newY) && shape[1]) || (this.ctx.isPointInStroke(shape[0], newX, newY) && shape[2])) {
+        return true;
+      }
+    }
+    return false;
   }
 
   goto(x=0, y=0) {
@@ -83,6 +108,9 @@ setTimeout(function move() {
   box.point(i);
   box.changesize(0.005);
   box.goto(i*1.1, i);
+  if (pointInSprite(50, 50)) {
+    ctx.fillStyle = "red";
+  }
   game.clearCanvas();
   game.renderSprites();
   if (i < 1000) {

@@ -60,13 +60,13 @@ class Sprite {
     this.costume = 0;
   }
 
-  getTransform() {
-    return transformMatrix(this.x, this.y, this.scale, this.rotation * Math.PI / 180);
+  getTransform(x=this.x, y=this.y, scale=this.scale, rotation=this.rotation) {
+    return transformMatrix(x, y, scale, rotation * Math.PI / 180);
   }
 
   pointInSprite(x=0, y=0) {
     // For this, probably just rotate the point and check if the transformed point is in the transformed path
-    const matrix = this.getTransform();
+    const matrix = this.getTransform(-this.x, -this.y, 1/this.scale, -this.rotation);
     let newX = matrix[0] * x + matrix[2] * y + matrix[4];
     let newY = matrix[1] * x + matrix[3] * y + matrix[5];
     for (const shape of this.shapes) {

@@ -79,7 +79,7 @@ game.addSprite(new Sprite());
 i = 10;
 setTimeout(function move() {
   game.sprites[0].point(i);
-  game.sprites[0].changesize(i);
+  game.sprites[0].changesize(0.2);
   game.sprites[0].goto(i*2, i*2);
   game.clearCanvas();
   game.renderSprites();

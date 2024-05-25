@@ -20,10 +20,12 @@ const game = {
       if (sprite.shown) {
         sprite.shapes.forEach((shape) => {
           const newPath = new Path2D(shape[0]);
-          newPath.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
-          newPath.rotate(sprite.rotation * Math.PI / 180);
+          this.ctx.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
+          const rotation = sprite.rotation * Math.PI / 180;
+          this.ctx.rotate(rotation);
           if (shape[1]) {this.ctx.fill(newPath);}
           if (shape[2]) {this.ctx.stroke(newPath);}
+          this.ctx.rotate(-1 * rotation);
         });
       }
     });

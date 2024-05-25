@@ -86,7 +86,7 @@ setTimeout(function move() {
   game.clearCanvas();
   game.renderSprites();
   if (i < 1000) {
-    i += 100;
+    i += 1;
     setTimeout(move, 10);
   }
 }, 100);

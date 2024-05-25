@@ -106,7 +106,7 @@ game.addSprite(box);
 i = 10;
 setTimeout(function move() {
   box.changesize(0.1);
-  if (box.pointInSprite(50, 50)) {
+  if (box.pointInSprite(150, 150)) {
     ctx.fillStyle = "red";
   }
   game.clearCanvas();

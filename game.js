@@ -10,6 +10,9 @@ const game = {
     this.canvas.height = this.canvas.offsetHeight;
     this.ctx = this.canvas.getContext("2d");
   },
+  clearCanvas() {
+    this.canvas.clearRect(0, 0, canvas.width, canvas.height);
+  }
 
   sprites: [],
   renderSprites() {
@@ -42,6 +45,11 @@ class Sprite {
     }];
     this.costume = 0;
   }
+
+  goto(x=0, y=0) {
+    this.x = x;
+    this.y = y;
+  }
 }
 
 game.setupCanvas();
@@ -49,4 +57,14 @@ ctx = game.ctx;
 /*ctx.fillStyle = "red";
 ctx.fillRect(0, 0, 150, 75);*/
 game.addSprite(new Sprite());
-game.renderSprites();
+i = 10;
+setTimeout(function move() {
+  game.sprites[0].goto(i, i);
+  game.clearCanvas();
+  game.renderSprites();
+  if (i < 100) {
+    i += 10;
+    setTimeout(move, 500);
+  }
+}, 500);
+// game.renderSprites();

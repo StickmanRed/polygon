@@ -65,6 +65,12 @@ class Sprite {
   rotate(deg=0) {
     this.point(this.rotation + deg);
   }
+  setsize(size=1) {
+    this.scale = size;
+  }
+  changesize(ds=0) {
+    this.scale += ds;
+  }
 }
 
 game.setupCanvas();
@@ -73,10 +79,12 @@ game.addSprite(new Sprite());
 i = 10;
 setTimeout(function move() {
   game.sprites[0].point(i);
+  game.sprites[0].changesize(i);
+  game.sprites[0].goto(i*2, i*2);
   game.clearCanvas();
   game.renderSprites();
   if (i < 1000) {
     i += 10;
-    setTimeout(move, 500);
+    setTimeout(move, 100);
   }
 }, 100);

@@ -18,17 +18,21 @@ const game = {
   renderSprites() {
     this.sprites.forEach((sprite) => {
       if (sprite.shown) {
-        this.ctx.beginPath();
-        sprite.shapes[sprite.costume](ctx, () => {
-          this.ctx.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
-          this.ctx.rotate(sprite.rotation * Math.PI / 180);
+        sprite.shapes.forEach((shape) => {
+          const newPath = new Path2D(shape[0]);
+          newPath.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
+          newPath.rotate(sprite.rotation * Math.PI / 180);
+          if (shape[1]) {this.ctx.fill(newPath);}
+          if (shape[2]) {this.ctx.stroke(newPath);}
         });
+      }
         
       }
     });
   },
   addSprite(sprite) {
     this.sprites.push(sprite);
+    this.sprites.ctx = this.ctx;
   }
 }
 class Sprite {
@@ -38,11 +42,12 @@ class Sprite {
     this.scale = scale;
     this.rotation = rotation;
     this.shown = shown;
-    this.shapes = [(ctx, transform) => {
-      ctx.rect(0,0,40,40);
-      transform();
-      ctx.fill();
-    }];
+    this.ctx = null;
+
+    let defaultShape = new Path2D();
+    defaultShape.rect(0,0,40,40);
+    
+    this.shapes = [[defaultShape, true, false]];
     this.costume = 0;
   }
 
@@ -54,8 +59,6 @@ class Sprite {
 
 game.setupCanvas();
 ctx = game.ctx;
-/*ctx.fillStyle = "red";
-ctx.fillRect(0, 0, 150, 75);*/
 game.addSprite(new Sprite());
 i = 10;
 setTimeout(function move() {
@@ -67,4 +70,3 @@ setTimeout(function move() {
     setTimeout(move, 500);
   }
 }, 500);
-// game.renderSprites();

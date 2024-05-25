@@ -105,7 +105,7 @@ const box = new Sprite();
 game.addSprite(box);
 i = 10;
 setTimeout(function move() {
-  box.changesize(0.005);
+  box.changesize(0.1);
   if (box.pointInSprite(50, 50)) {
     ctx.fillStyle = "red";
   }

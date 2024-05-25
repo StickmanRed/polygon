@@ -41,7 +41,7 @@ const game = {
   },
   addSprite(sprite) {
     this.sprites.push(sprite);
-    this.sprites.ctx = this.ctx;
+    sprite.ctx = this.ctx;
   }
 }
 class Sprite {

@@ -69,7 +69,7 @@ class Sprite {
     const matrix = this.getTransform(-this.x, -this.y, 1/this.scale, -this.rotation);
     let newX = matrix[0] * x + matrix[2] * y + matrix[4];
     let newY = matrix[1] * x + matrix[3] * y + matrix[5];
-    text.textContent = `x: ${newX}, y: ${newY}`;
+    text.textContent = `x: ${Math.round(newX)}, y: ${Math.round(newY)}`;
     for (const shape of this.shapes) {
       if ((this.ctx.isPointInPath(shape[0], newX, newY) && shape[1]) || (this.ctx.isPointInStroke(shape[0], newX, newY) && shape[2])) {
         return true;

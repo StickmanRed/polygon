@@ -108,7 +108,7 @@ text = document.getElementById("text");
 i = 10;
 setTimeout(function move() {
   box.goto(i/3, i/3);
-  box.point(i/2);
+  // box.point(i/2);
   box.changesize(0.002);
   if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";

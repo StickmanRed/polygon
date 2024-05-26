@@ -69,6 +69,7 @@ class Sprite {
     const matrix = this.getTransform(-this.x, -this.y, 1/this.scale, -this.rotation);
     let newX = matrix[0] * x + matrix[2] * y + matrix[4];
     let newY = matrix[1] * x + matrix[3] * y + matrix[5];
+    text.textContent = `x: ${newX}, y: ${newY}`;
     for (const shape of this.shapes) {
       if ((this.ctx.isPointInPath(shape[0], newX, newY) && shape[1]) || (this.ctx.isPointInStroke(shape[0], newX, newY) && shape[2])) {
         return true;
@@ -103,11 +104,12 @@ game.setupCanvas();
 ctx = game.ctx;
 const box = new Sprite();
 game.addSprite(box);
+text = document.getElementById("text");
 i = 10;
 setTimeout(function move() {
-  box.goto(i/10, i/10);
+  box.goto(i/3, i/3);
   box.point(i/2);
-  box.changesize(0.005);
+  box.changesize(0.002);
   if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";
   }

@@ -123,7 +123,7 @@ setTimeout(function move() {
   ctx.fill();
   ctx.fillStyle = fill;
   game.renderSprites();
-  if (i < 1000) {
+  if (true) {
     i += 1;
     setTimeout(move, 10);
   }

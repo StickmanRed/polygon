@@ -106,10 +106,17 @@ game.addSprite(box);
 i = 10;
 setTimeout(function move() {
   box.changesize(0.1);
-  if (box.pointInSprite(900, 900)) {
+  if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";
   }
   game.clearCanvas();
+  ctx.beginPath();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.arc(400, 400, 4, 0, 2 * Math.PI);
+  fill = ctx.fillStyle;
+  ctx.fillStyle = "green";
+  ctx.fill();
+  ctx.fillStyle = fill;
   game.renderSprites();
   if (i < 1000) {
     i += 1;

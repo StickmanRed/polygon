@@ -112,12 +112,13 @@ game.setupCanvas();
 ctx = game.ctx;
 const box = new Sprite();
 game.addSprite(box);
+box.point(45);
 text = document.getElementById("text");
 i = 10;
 setTimeout(function move() {
   box.goto(i/3, i/3);
-  box.point(i/2);
-  box.changesize(0.008);
+  // box.point(i/2);
+  box.changesize(0.005);
   if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";
   }

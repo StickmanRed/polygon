@@ -62,7 +62,7 @@ const ctx = game.ctx;
 const box = new Sprite();
 game.addSprite(box);
 let text = document.getElementById("text");
-i = 10;
+let i = 10;
 setTimeout(function move() {
   box.goto(i/3, i/3);
   box.point(i/2);

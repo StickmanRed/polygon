@@ -55,7 +55,7 @@ box.goto(400, 400);
 game.addSprite(box);
 
 setTimeout(function update() {
-  ctx.fillStyle = box.pointInSprite(mouseX, mouseY) ? "red" : "black";
+  ctx.fillStyle = box.pointInSprite(game.mouseX, game.mouseY) ? "red" : "black";
   game.clearCanvas();
   game.renderSprites();
   setTimeout(update, 10);

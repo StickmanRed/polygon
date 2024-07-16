@@ -52,18 +52,10 @@ const ctx = game.ctx;
 const box = new Sprite();
 box.goto(400, 400);
 game.addSprite(box);
-let text = document.getElementById("text");
-let i = 10;
+
 setTimeout(function update() {
-  if (box.pointInSprite(mouseX, mouseY)) {
-    ctx.fillStyle = "red";
-  }
-  else {
-    ctx.fillStyle = "black";
-  }
+  ctx.fillStyle = box.pointInSprite(mouseX, mouseY) ? "red" : "black";
   game.clearCanvas();
   game.renderSprites();
-  if (true) {
-    setTimeout(update, 10);
-  }
+  setTimeout(update, 10);
 }, 10);

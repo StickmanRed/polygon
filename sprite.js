@@ -61,10 +61,24 @@ export default class Sprite {
   rotate(deg=0) {
     this.point(this.rotation + deg);
   }
+
+  costume(index) {
+    if (!index || typeof index != "number" || index >= this.shapes.length) {return;}
+    this.costume = index;
+  }
+  nextcostume() {
+    this.costume = (this.costume + 1) % this.shapes.length;
+  }
   setsize(size=1) {
     this.scale = size;
   }
   changesize(ds=0) {
     this.scale += ds;
+  }
+  show() {
+    this.shown = true;
+  }
+  hide() {
+    this.shown = false;
   }
 }

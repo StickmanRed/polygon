@@ -73,7 +73,7 @@ class Sprite {
   pointInSprite(x=0, y=0) {
     // For this, probably just rotate the point and check if the transformed point is in the transformed path
     const transformValues = this.getTransform();
-    const matrix = math.matrix([[transformValues[0], transformValues[1], transformValues[4]], [transformValues[2], transformValues[3], transformValues[5]], [0, 0, 1]]);
+    const matrix = math.matrix([[transformValues[0], transformValues[2], transformValues[4]], [transformValues[1], transformValues[3], transformValues[5]], [0, 0, 1]]);
     const inverseMatrix = math.inv(matrix);
     let newX = inverseMatrix.get([0,0]) * x + inverseMatrix.get([0,1]) * y + inverseMatrix.get([0,2]);
     let newY = inverseMatrix.get([1,0]) * x + inverseMatrix.get([1,1]) * y + inverseMatrix.get([1,2]);

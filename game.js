@@ -112,20 +112,17 @@ let mouseX = 0;
 let mouseY = 0;
 
 game.setupCanvas();
-canvas = game.canvas;
 ctx = game.ctx;
+
 const box = new Sprite();
 game.addSprite(box);
-// box.point(45);
-box.goto(400, 400);
-box.setsize(2);
 text = document.getElementById("text");
 i = 10;
 setTimeout(function move() {
-  // box.goto(i/3, i/3);
-  // box.point(i/2);
-  // box.changesize(0.005);
-  if (box.pointInSprite(mouseX, mouseY)) {
+  box.goto(i/3, i/3);
+  box.point(i/2);
+  box.changesize(0.005);
+  if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";
   }
   else {
@@ -147,7 +144,7 @@ setTimeout(function move() {
 }, 100);
 
 window.addEventListener("mousemove", (event) => {
-  const bounds = canvas.getBoundingClientRect();
+  const bounds = game.canvas.getBoundingClientRect();
   mouseX = event.clientX - bounds.left;
   mouseY = event.clientY - bounds.top;
 });

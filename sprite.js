@@ -16,7 +16,8 @@ export default class Sprite {
     this.x = x;
     this.y = y;
     this.scale = scale;
-    this.rotation = (rotation + 180) % 360 - 180; // degrees are measured as in Scratch; up is 0, right is 90, down is -180
+    // Degrees are measured as in Scratch: up is 0, right is 90, down is -180
+    this.rotation = (rotation + 180) % 360 - 180;
     this.shown = shown;
     this.ctx = null;
 
@@ -31,8 +32,8 @@ export default class Sprite {
     return transformMatrix(x, y, scale, rotation * Math.PI / 180);
   }
 
+  // Applies the inverse transformation to the point, then checks if one of the original shapes contains this point
   pointInSprite(x=0, y=0) {
-    // For this, probably just rotate the point and check if the transformed point is in the transformed path
     const transformValues = this.getTransform();
     const matrix = math.matrix([[transformValues[0], transformValues[2], transformValues[4]], [transformValues[1], transformValues[3], transformValues[5]], [0, 0, 1]]);
     const inverseMatrix = math.inv(matrix);

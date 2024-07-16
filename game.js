@@ -11,6 +11,9 @@ const game = {
     this.canvas.width  = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
     this.ctx = this.canvas.getContext("2d");
+
+    this.mouseX = 0;
+    this.mouseY = 0;
   },
   clearCanvas() {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -38,12 +41,10 @@ const game = {
   }
 }
 
-let mouseX = 0;
-let mouseY = 0;
 window.addEventListener("mousemove", (event) => {
   const bounds = game.canvas.getBoundingClientRect();
-  mouseX = event.clientX - bounds.left;
-  mouseY = event.clientY - bounds.top;
+  game.mouseX = event.clientX - bounds.left;
+  game.mouseY = event.clientY - bounds.top;
 });
 
 game.setupCanvas();

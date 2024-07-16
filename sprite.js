@@ -39,7 +39,6 @@ export default class Sprite {
     const inverseMatrix = math.inv(matrix);
     let newX = inverseMatrix.get([0,0]) * x + inverseMatrix.get([0,1]) * y + inverseMatrix.get([0,2]);
     let newY = inverseMatrix.get([1,0]) * x + inverseMatrix.get([1,1]) * y + inverseMatrix.get([1,2]);
-    text.textContent = `x: ${Math.round(newX)}, y: ${Math.round(newY)}`;
     for (const shape of this.shapes) {
       if ((this.ctx.isPointInPath(shape[0], newX, newY) && shape[1]) || (this.ctx.isPointInStroke(shape[0], newX, newY) && shape[2])) {
         return true;

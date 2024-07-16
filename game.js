@@ -115,11 +115,11 @@ game.addSprite(box);
 box.point(45);
 box.goto(400, 400)
 text = document.getElementById("text");
-/*i = 10;
+i = 10;
 setTimeout(function move() {
-  box.goto(i/3, i/3);
+  // box.goto(i/3, i/3);
   // box.point(i/2);
-  box.changesize(0.005);
+  // box.changesize(0.005);
   if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";
   }
@@ -139,4 +139,4 @@ setTimeout(function move() {
     i += 1;
     setTimeout(move, 10);
   }
-}, 100);*/
+}, 100);

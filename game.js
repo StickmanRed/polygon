@@ -114,7 +114,7 @@ const box = new Sprite();
 game.addSprite(box);
 box.point(45);
 text = document.getElementById("text");
-i = 10;
+/*i = 10;
 setTimeout(function move() {
   box.goto(i/3, i/3);
   // box.point(i/2);
@@ -138,4 +138,4 @@ setTimeout(function move() {
     i += 1;
     setTimeout(move, 10);
   }
-}, 100);
+}, 100);*/

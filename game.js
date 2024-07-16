@@ -24,8 +24,6 @@ const game = {
         const matrix = sprite.getTransform();
         sprite.shapes.forEach((shape) => {
           const newPath = new Path2D(shape[0]);
-          // this.ctx.setTransform(sprite.scale, 0, 0, sprite.scale, sprite.x, sprite.y);
-          // this.ctx.rotate(sprite.rotation * Math.PI / 180);
           this.ctx.setTransform(...matrix);
           if (shape[1]) {this.ctx.fill(newPath);}
           if (shape[2]) {this.ctx.stroke(newPath);}

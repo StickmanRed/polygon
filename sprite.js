@@ -1,4 +1,16 @@
-// TODO: Move sprite class here
+/* The transformation matrix for scaleX, skewY, skewX, scaleY, shiftX, shiftY:
+ * [ scaleX skewX  shiftX ]
+ * [ skewY  scaleY shiftY ]
+ * [ 0      0      1      ]
+ */
+
+// Huge thanks to whoever wrote this! https://stackoverflow.com/a/60248778
+function transformMatrix(dx, dy, scale, rotate) {
+  const xAX = Math.cos(rotate) * scale;
+  const xAY = Math.sin(rotate) * scale;
+  return [xAX, xAY, -xAY, xAX, dx, dy];
+}
+
 export default class Sprite {
   constructor(x=0, y=0, scale=1, rotation=0, shown=true) {
     this.x = x;

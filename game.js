@@ -42,6 +42,11 @@ const game = {
 
 let mouseX = 0;
 let mouseY = 0;
+window.addEventListener("mousemove", (event) => {
+  const bounds = game.canvas.getBoundingClientRect();
+  mouseX = event.clientX - bounds.left;
+  mouseY = event.clientY - bounds.top;
+});
 
 game.setupCanvas();
 const ctx = game.ctx;
@@ -74,9 +79,3 @@ setTimeout(function move() {
     setTimeout(move, 10);
   }
 }, 100);
-
-window.addEventListener("mousemove", (event) => {
-  const bounds = game.canvas.getBoundingClientRect();
-  mouseX = event.clientX - bounds.left;
-  mouseY = event.clientY - bounds.top;
-});

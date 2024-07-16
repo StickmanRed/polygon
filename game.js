@@ -1,3 +1,5 @@
+import Sprite from "sprite.js";
+
 // Huge thanks to whoever wrote this! https://stackoverflow.com/a/60248778
 function transformMatrix(dx, dy, scale, rotate) {
   const xAX = Math.cos(rotate) * scale;

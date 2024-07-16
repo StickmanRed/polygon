@@ -57,11 +57,11 @@ let mouseX = 0;
 let mouseY = 0;
 
 game.setupCanvas();
-ctx = game.ctx;
+const ctx = game.ctx;
 
 const box = new Sprite();
 game.addSprite(box);
-text = document.getElementById("text");
+let text = document.getElementById("text");
 i = 10;
 setTimeout(function move() {
   box.goto(i/3, i/3);

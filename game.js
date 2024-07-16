@@ -5,6 +5,12 @@ function transformMatrix(dx, dy, scale, rotate) {
   return [xAX, xAY, -xAY, xAX, dx, dy];
 }
 
+/* The transformation matrix for scaleX, skewY, skewX, scaleY, shiftX, shiftY:
+ * [ scaleX skewY  shiftX ]
+ * [ skewX  scaleY shiftY ]
+ * [ 0      0      1      ]
+ */
+
 const game = {
   canvas: document.createElement("canvas"),
   setupCanvas() {
@@ -66,9 +72,11 @@ class Sprite {
 
   pointInSprite(x=0, y=0) {
     // For this, probably just rotate the point and check if the transformed point is in the transformed path
-    const matrix = this.getTransform(-this.x, -this.y, 1/this.scale, -this.rotation);
-    let newX = matrix[0] * x + matrix[2] * y + matrix[4];
-    let newY = matrix[1] * x + matrix[3] * y + matrix[5];
+    const transformValues = this.getTransform();
+    const matrix = math.matrix([[transformValues[0], transformValues[1], transformValues[4]], [transformValues[2], transformValues[3], transformValues[5]], [0, 0, 1]]);
+    const inverseMatrix = math.inv(matrix);
+    let newX = inverseMatrix.get([0,0]) * x + inverseMatrix.get([1,0]) * y + inverseMatrix.get([0,2]);
+    let newY = inverseMatrix.get([0,1]) * x + inverseMatrix.get([1,1]) * y + inverseMatrix.get([1,2]);
     text.textContent = `x: ${Math.round(newX)}, y: ${Math.round(newY)}`;
     for (const shape of this.shapes) {
       if ((this.ctx.isPointInPath(shape[0], newX, newY) && shape[1]) || (this.ctx.isPointInStroke(shape[0], newX, newY) && shape[2])) {

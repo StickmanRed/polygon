@@ -117,7 +117,7 @@ i = 10;
 setTimeout(function move() {
   box.goto(i/3, i/3);
   box.point(i/2);
-  box.changesize(0.002);
+  box.changesize(0.008);
   if (box.pointInSprite(400, 400)) {
     ctx.fillStyle = "red";
   }

@@ -67,15 +67,18 @@ setTimeout(function move() {
   }
   game.clearCanvas();
   ctx.beginPath();
+  
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.arc(400, 400, 4, 0, 2 * Math.PI);
-  fill = ctx.fillStyle;
+  
+  let previousFill = ctx.fillStyle;
   ctx.fillStyle = "green";
   ctx.fill();
-  ctx.fillStyle = fill;
+  ctx.fillStyle = previousFill;
+  
   game.renderSprites();
   if (true) {
     i += 1;
     setTimeout(move, 10);
   }
-}, 100);
+}, 10);

@@ -52,33 +52,20 @@ game.setupCanvas();
 const ctx = game.ctx;
 
 const box = new Sprite();
+box.goto(400, 400);
 game.addSprite(box);
 let text = document.getElementById("text");
 let i = 10;
-setTimeout(function move() {
-  box.goto(i/3, i/3);
-  box.point(i/2);
-  box.changesize(0.005);
-  if (box.pointInSprite(400, 400)) {
+setTimeout(function update() {
+  if (box.pointInSprite(mouseX, mouseY)) {
     ctx.fillStyle = "red";
   }
   else {
     ctx.fillStyle = "black";
   }
   game.clearCanvas();
-  ctx.beginPath();
-  
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.arc(400, 400, 4, 0, 2 * Math.PI);
-  
-  let previousFill = ctx.fillStyle;
-  ctx.fillStyle = "green";
-  ctx.fill();
-  ctx.fillStyle = previousFill;
-  
   game.renderSprites();
   if (true) {
-    i += 1;
-    setTimeout(move, 10);
+    setTimeout(update, 10);
   }
 }, 10);

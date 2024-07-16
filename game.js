@@ -108,7 +108,11 @@ class Sprite {
   }
 }
 
+let mouseX = 0;
+let mouseY = 0;
+
 game.setupCanvas();
+canvas = game.canvas;
 ctx = game.ctx;
 const box = new Sprite();
 game.addSprite(box);
@@ -120,7 +124,7 @@ setTimeout(function move() {
   // box.goto(i/3, i/3);
   // box.point(i/2);
   // box.changesize(0.005);
-  if (box.pointInSprite(400, 400)) {
+  if (box.pointInSprite(mouseX, mouseY)) {
     ctx.fillStyle = "red";
   }
   else {
@@ -140,3 +144,9 @@ setTimeout(function move() {
     setTimeout(move, 10);
   }
 }, 100);
+
+window.addEventListener("mousemove", (event) => {
+  const bounds = canvas.getBoundingClientRect();
+  mouseX = event.clientX - bounds.left;
+  mouseY = event.clientY - bounds.top;
+});

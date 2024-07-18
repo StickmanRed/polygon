@@ -7,3 +7,8 @@ Right now, I'm making a sprite system for a game. Feel free to check it out!
 - [ ] Develop hitbox system
 - [ ] Implement polygon collision algorithm
 - [x] Move mouse positions to game object
+- [ ] Expand todo list + brainstorm necessary features for game-making
+
+### Ideas
+- Keyboard events
+- 

@@ -22,3 +22,29 @@ class Polygon {
     this.points.push([x, y]);
   }
 }
+
+// https://web.archive.org/web/20141127210836/http://content.gpwiki.org/index.php/Polygon_Collision
+// https://stackoverflow.com/a/24392281
+// ~ 21,000 lines per second... replace this with a more complicated algorithm when needed
+function intersects(start1, end1, start2, end2) {
+  const det = math.det([math.subtract(end1, start1), math.subtract(start2, end2)]);
+  if (det === 0) {
+    return false;
+  }
+  const t = math.divide(math.det([math.subtract(start2, start1), math.subtract(start2, end2)]), det);
+  const u = math.divide(math.det([math.subtract(end1, start1), math.subtract(start2, end1)]), det);
+  return (t >= 0) && (u >= 0) && (t <= 1) && (u <= 1);
+}
+// https://en.wikipedia.org/wiki/Point_in_polygon
+function pointInside(point, polygon) {
+  let intersectionCount = 0;
+  polygon.points.forEach((vertex, idx, array) => {
+    if (vertex[1] === point[1]) {
+      intersectionCount += math.isNegative((array[(idx - 1) % array.length][1] - vertex[1]) * (array[(idx + 1) % array.length][1] - vertex[1]));
+    }
+    else {
+      intersectionCount += !!math.intersect(point, [point[0] + 1, point[1]], vertex, array[(idx + 1) % array.length]);
+    }
+  });
+  return !!(intersectionCount % 2);
+}

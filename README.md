@@ -11,4 +11,4 @@ Right now, I'm making a sprite system for a game. Feel free to check it out!
 
 ### Ideas
 - Keyboard events
-- 
+- Input coercion for functions?

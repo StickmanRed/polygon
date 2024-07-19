@@ -23,7 +23,8 @@ export default class Sprite {
 
     let defaultShape = new Path2D();
     defaultShape.rect(0,0,40,40);
-    
+
+    // Each costume, or "shape", is a Path2D
     this.shapes = [[defaultShape, true, false]];
     this.costume = 0;
   }
@@ -39,12 +40,7 @@ export default class Sprite {
     const inverseMatrix = math.inv(matrix);
     let newX = inverseMatrix.get([0,0]) * x + inverseMatrix.get([0,1]) * y + inverseMatrix.get([0,2]);
     let newY = inverseMatrix.get([1,0]) * x + inverseMatrix.get([1,1]) * y + inverseMatrix.get([1,2]);
-    for (const shape of this.shapes) {
-      if ((this.ctx.isPointInPath(shape[0], newX, newY) && shape[1]) || (this.ctx.isPointInStroke(shape[0], newX, newY) && shape[2])) {
-        return true;
-      }
-    }
-    return false;
+    return (this.ctx.isPointInPath(this.shapes[this.costume][0], newX, newY) && this.shapes[this.costume][1]) || (this.ctx.isPointInStroke(this.shapes[this.costume][0], newX, newY) && this.shapes[this.costume][2]);
   }
 
   goto(x=0, y=0) {

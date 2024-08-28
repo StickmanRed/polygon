@@ -1,3 +1,16 @@
+/* The transformation matrix for scaleX, skewY, skewX, scaleY, shiftX, shiftY:
+ * [ scaleX skewX  shiftX ]
+ * [ skewY  scaleY shiftY ]
+ * [ 0      0      1      ]
+ */
+
+// Huge thanks to whoever wrote this! https://stackoverflow.com/a/60248778
+function transformMatrix(dx, dy, scale, rotate) {
+  const xAX = Math.cos(rotate) * scale;
+  const xAY = Math.sin(rotate) * scale;
+  return [xAX, xAY, -xAY, xAX, dx, dy];
+}
+
 export default class Sprite {
   constructor(x=0, y=0, scale=1, rotation=0, shown=true) {
     this.x = x;
@@ -17,7 +30,7 @@ export default class Sprite {
   }
 
   getTransform(x=this.x, y=this.y, scale=this.scale, rotation=this.rotation) {
-    return new DOMMatrix([x, y, scale, rotation * Math.PI / 180]);
+    return new DOMMatrix(transformMatrix(x, y, scale, rotation * Math.PI / 180));
   }
 
   // Applies the inverse transformation to the point, then checks if one of the original shapes contains this point

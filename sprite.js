@@ -36,7 +36,7 @@ export default class Sprite {
   // Applies the inverse transformation to the point, then checks if one of the original shapes contains this point
   pointInSprite(x=0, y=0) {
     const transformedPath = new Path2D();
-    transformedPath.addPath(this.shapes[this.costume], this.getTransform());
+    transformedPath.addPath(this.shapes[this.costume][0], this.getTransform());
     return this.ctx.isPointInPath(transformedPath, x, y) && (this.shapes[this.costume][1] || this.shapes[this.costume][2]);
   }
 

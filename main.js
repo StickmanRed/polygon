@@ -16,7 +16,6 @@ const game = {
     this.mouseY = 0;
   },
   clearCanvas() {
-    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
 
@@ -24,13 +23,12 @@ const game = {
   renderSprites() {
     this.sprites.forEach((sprite) => {
       if (sprite.shown) {
-        const matrix = sprite.getTransform();
+        const transformMatrix = sprite.getTransform();
         sprite.shapes.forEach((shape) => {
-          const newPath = new Path2D(shape[0]);
-          this.ctx.setTransform(...matrix);
+          const newPath = new Path2D();
+          newPath.addPath(shape[0], transformMatrix);
           if (shape[1]) {this.ctx.fill(newPath);}
           if (shape[2]) {this.ctx.stroke(newPath);}
-          this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         });
       }
     });
